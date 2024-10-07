@@ -1,6 +1,5 @@
 #!/bin/bash
-
-
+#Ejer1 Guardar Variable
 
 # Llamada a la función pasando el parámetro
 GuardarNombre $1
@@ -11,6 +10,7 @@ if [ -z "$nombre" ]; then
     exit 1
 fi
 
+#Ejer 2 Crear carpeta
 # Crear la carpeta con el nombre
 mkdir "$nombre"
 
@@ -31,21 +31,24 @@ echo "La carpeta '$nombre' y el archivo 'nombre.txt' han sido creados con éxito
 # Imprimir el valor de la variable
 echo $nombre
 
-
-
-import os
-from datetime import datetime
-
-def verificar_minutos_par_y_escribir(carpeta):
-    # Obtener la hora actual
-    minutos_actuales = datetime.now().minute
-
-    # Verificar si los minutos actuales son pares
-    if minutos_actuales % 2 == 0:
-        print("Has Ganado")
+# Ejer 3 Ganador o no
+# Función que verifica si los minutos actuales son pares y escribe en ganador.txt
+verificar_minutos_par_y_escribir() {
+    carpeta=$1
+    # Obtener los minutos actuales
+    minutos_actuales=$(date +"%M")
+    
+    # Verificar si los minutos son pares
+    if [ $((minutos_actuales % 2)) -eq 0 ]; then
+        echo "Has Ganado"
         # Construir la ruta completa del archivo ganador.txt
-        ruta_archivo = os.path.join(carpeta, "ganador.txt")
+        ruta_archivo="$carpeta/ganador.txt"
         
         # Escribir "Has Ganado" en el archivo ganador.txt
-        with open(ruta_archivo, "w") as f:
-            f.write("Has Ganado")
+        echo "Has Ganado" > "$ruta_archivo"
+    fi
+}
+
+# Llamada a la función pasando la carpeta como parámetro
+verificar_minutos_par_y_escribir "/ruta/a/la/carpeta"
+
