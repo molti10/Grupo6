@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# Función para guardar un parámetro en la variable nombre
-GuardarNombre () {
-   nombre=$1  # Asigna el primer argumento a la variable 'nombre'
-}
+
 
 # Llamada a la función pasando el parámetro
 GuardarNombre $1
@@ -31,3 +28,24 @@ echo "Fichero creado el: $fecha" > nombre.txt
 
 # Mostrar un mensaje de éxito
 echo "La carpeta '$nombre' y el archivo 'nombre.txt' han sido creados con éxito."
+# Imprimir el valor de la variable
+echo $nombre
+
+
+
+import os
+from datetime import datetime
+
+def verificar_minutos_par_y_escribir(carpeta):
+    # Obtener la hora actual
+    minutos_actuales = datetime.now().minute
+
+    # Verificar si los minutos actuales son pares
+    if minutos_actuales % 2 == 0:
+        print("Has Ganado")
+        # Construir la ruta completa del archivo ganador.txt
+        ruta_archivo = os.path.join(carpeta, "ganador.txt")
+        
+        # Escribir "Has Ganado" en el archivo ganador.txt
+        with open(ruta_archivo, "w") as f:
+            f.write("Has Ganado")
